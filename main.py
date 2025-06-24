@@ -1,35 +1,23 @@
 from tkinter import *
+from tkinter import ttk, messagebox
 import tkintermapview
+from geopy.geocoders import Nominatim
 
-users: list = []
+hurtownie = []
+pracownicy = []
+klienci = []
 
+geolocator = Nominatim(user_agent="hurtownie_app") # tworzenie obiektu
 
-# hurtownie
-class Wholesaler:
-    def __init__(self, name, location):
-        self.name = name
-        self.location = location
-        self.coordinates = self.get_coordinates()
-        self.marker = map_widget.set_marker(self.coordinates[0], self.coordinates[1])
+def get_coordinates(street, city): # definicja funkcji
+    try:
+        if not city.strip():
+            raise ValueError("Brak miasta")
+        query = f"{street.strip()}, {city.strip()}, Polska" if street else f"{city.strip()}, Polska" # tworzenie obiektu
+        loc = geolocator.geocode(query, timeout=10) # tworzenie obiektu
+        if loc:
+            return [loc.latitude, loc.longitude]
+    except Exception as e:
+        print(f"[Błąd geolokalizacji] {street}, {city}: {e}")
+    return [52.23, 21.0]
 
-    def get_coordinates(self) -> list:
-        import requests
-        from bs4 import BeautifulSoup
-
-        url = f"https://pl.wikipedia.org/wiki/{self.location}"
-        response = requests.get(url).text
-        response_html = BeautifulSoup(response, "html.parser")
-        latitude = float(response_html.select(".latitude")[1].text.replace(",", "."))
-        longitude = float(response_html.select(".longitude")[1].text.replace(",", "."))
-        print(latitude)
-        print(longitude)
-        return [latitude, longitude]
-
-    def add_wholesaler():
-        zmienna_nazwa = entry_name.get()
-        zmienna_lokalizacja = entry_location.get()
-
-
-root = Tk()
-root.geometry("1200x800")
-root.title("Lista hurtowni")
