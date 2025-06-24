@@ -211,3 +211,23 @@ Label(frame_klienci, text="Ulica (opcjonalnie)").pack()
 entry_k_street.pack()
 Label(frame_klienci, text="Hurtownia").pack()
 combo_k_hurtownia.pack()
+
+def add_klient():
+    name = entry_k_name.get().strip()
+    surname = entry_k_surname.get().strip()
+    city = entry_k_city.get().strip()
+    street = entry_k_street.get().strip()
+    hurtownia_name = combo_k_hurtownia.get().strip() # tworzenie obiektu
+    if not name or not surname or not city or not hurtownia_name:
+        messagebox.showwarning("Błąd", "Uzupełnij dane klienta i wybierz hurtownię.") # wyświetlenie komunikatu
+        return
+    h = next(h for h in hurtownie if h.name == hurtownia_name) # tworzenie obiektu
+    k = Klient(name, surname, city, h, street) # tworzenie obiektu
+    klienci.append(k) # dodanie elementu do listy
+    listbox_klienci.insert(END, f"{k.name} {k.surname}") # dodanie wpisu do listy
+    for e in (entry_k_name, entry_k_surname, entry_k_city, entry_k_street): e.delete(0,END) # usunięcie elementu
+
+Button(frame_klienci, text="Dodaj", command=add_klient).pack()
+listbox_klienci = Listbox(frame_klienci) # lista elementów
+listbox_klienci.pack() # umieszczenie elementu w interfejsie
+Button(frame_klienci, text="Usuń", command=lambda: delete_selected(listbox_klienci, klienci)).pack() # przycisk
