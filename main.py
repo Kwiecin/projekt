@@ -174,3 +174,23 @@ Label(frame_pracownicy, text="Miasto").pack()
 entry_p_city.pack()
 Label(frame_pracownicy, text="Hurtownia").pack()
 combo_p_hurtownia.pack()
+
+def add_pracownik(): # definicja funkcji
+    name = entry_p_name.get().strip() # tworzenie obiektu
+    surname = entry_p_surname.get().strip()
+    street = entry_p_street.get().strip()
+    city = entry_p_city.get().strip()
+    hurtownia_name = combo_p_hurtownia.get().strip()
+    if not name or not surname or not city or not hurtownia_name:
+        messagebox.showwarning("Błąd", "Uzupełnij dane pracownika i wybierz hurtownię.") # wyświetlenie komunikatu
+        return
+    h = next(h for h in hurtownie if h.name == hurtownia_name) # tworzenie obiektu
+    p = Pracownik(name, surname, street, city, h) # tworzenie obiektu
+    pracownicy.append(p) # dodanie elementu do listy
+    listbox_pracownicy.insert(END, f"{p.name} {p.surname}") # dodanie wpisu do listy
+    for e in (entry_p_name, entry_p_surname, entry_p_street, entry_p_city): e.delete(0,END) # usunięcie elementu
+
+Button(frame_pracownicy, text="Dodaj", command=add_pracownik).pack()
+listbox_pracownicy = Listbox(frame_pracownicy) # lista elementów
+listbox_pracownicy.pack() # umieszczenie elementu w interfejsie
+Button(frame_pracownicy, text="Usuń", command=lambda: delete_selected(listbox_pracownicy, pracownicy)).pack() # przycisk
