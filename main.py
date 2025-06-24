@@ -194,3 +194,20 @@ Button(frame_pracownicy, text="Dodaj", command=add_pracownik).pack()
 listbox_pracownicy = Listbox(frame_pracownicy) # lista elementów
 listbox_pracownicy.pack() # umieszczenie elementu w interfejsie
 Button(frame_pracownicy, text="Usuń", command=lambda: delete_selected(listbox_pracownicy, pracownicy)).pack() # przycisk
+
+# === KLIENCI ===
+entry_k_name = Entry(frame_klienci) # pole tekstowe do wprowadzania danych
+entry_k_surname = Entry(frame_klienci)
+entry_k_street = Entry(frame_klienci)
+entry_k_city = Entry(frame_klienci)
+combo_k_hurtownia = ttk.Combobox(frame_klienci, state="readonly") # rozwijana lista wyboru
+Label(frame_klienci, text="Imię").pack() # etykieta tekstowa
+entry_k_name.pack() # umieszczenie elementu w interfejsie
+Label(frame_klienci, text="Nazwisko").pack()
+entry_k_surname.pack()
+Label(frame_klienci, text="Miasto").pack()
+entry_k_city.pack()
+Label(frame_klienci, text="Ulica (opcjonalnie)").pack()
+entry_k_street.pack()
+Label(frame_klienci, text="Hurtownia").pack()
+combo_k_hurtownia.pack()
