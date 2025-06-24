@@ -231,3 +231,29 @@ Button(frame_klienci, text="Dodaj", command=add_klient).pack()
 listbox_klienci = Listbox(frame_klienci) # lista elementów
 listbox_klienci.pack() # umieszczenie elementu w interfejsie
 Button(frame_klienci, text="Usuń", command=lambda: delete_selected(listbox_klienci, klienci)).pack() # przycisk
+
+# === SZCZEGÓŁY ===
+combo_szczegoly = ttk.Combobox(frame_szczegoly, state="readonly") # rozwijana lista wyboru
+combo_szczegoly.pack() # umieszczenie elementu w interfejsie
+combo_szczegoly.bind("<<ComboboxSelected>>", filtruj_dla_hurtowni)
+
+Button(frame_szczegoly, text="Szczegóły pracownika", command=show_details_worker).pack()
+listbox_szczegoly_pracownicy = Listbox(frame_szczegoly)
+listbox_szczegoly_pracownicy.pack()
+
+Button(frame_szczegoly, text="Szczegóły klienta", command=show_details_client).pack()
+listbox_szczegoly_klienci = Listbox(frame_szczegoly)
+listbox_szczegoly_klienci.pack()
+
+label_output = Label(frame_szczegoly, text="", justify=LEFT, anchor="w")
+label_output.pack(fill=BOTH)
+
+# === MAPA ===
+frame_map = Frame(root)
+frame_map.pack(side=RIGHT, expand=True, fill=BOTH) # umieszczenie elementu w interfejsie
+map_widget = tkintermapview.TkinterMapView(frame_map, width=800, height=800, corner_radius=0)
+map_widget.set_position(52.23, 21.0) # ustawienie pozycji mapy
+map_widget.set_zoom(6) # ustawienie poziomu przybliżenia
+map_widget.pack(expand=True, fill=BOTH)
+
+root.mainloop()
