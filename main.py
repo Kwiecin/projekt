@@ -21,3 +21,30 @@ def get_coordinates(street, city): # definicja funkcji
         print(f"[Błąd geolokalizacji] {street}, {city}: {e}")
     return [52.23, 21.0]
 
+class Hurtownia: # definicja klasy
+    def __init__(self, name, street, city): # definicja funkcji
+        self.name = name
+        self.street = street
+        self.city = city
+        self.coordinates = get_coordinates(street, city) # tworzenie obiektu
+        self.marker = map_widget.set_marker(*self.coordinates, text=f"H: {self.name}") # tworzenie obiektu
+
+class Pracownik: # definicja klasy
+    def __init__(self, name, surname, street, city, hurtownia): # definicja funkcji
+        self.name = name
+        self.surname = surname
+        self.street = street
+        self.city = city
+        self.hurtownia = hurtownia
+        self.coordinates = get_coordinates(street, city) # tworzenie obiektu
+        self.marker = map_widget.set_marker(*self.coordinates, text=f"P: {self.name} {self.surname}") # tworzenie obiektu
+
+class Klient: # definicja klasy
+    def __init__(self, name, surname, city, hurtownia, street=""): # definicja funkcji
+        self.name = name
+        self.surname = surname
+        self.city = city
+        self.street = street
+        self.hurtownia = hurtownia
+        self.coordinates = get_coordinates(street, city) # tworzenie obiektu
+        self.marker = map_widget.set_marker(*self.coordinates, text=f"K: {self.name} {self.surname}") # tworzenie obiektu
