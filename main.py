@@ -128,3 +128,14 @@ notebook.add(frame_hurtownie, text="Hurtownie") # tworzenie obiektu
 notebook.add(frame_pracownicy, text="Pracownicy")
 notebook.add(frame_klienci, text="Klienci")
 notebook.add(frame_szczegoly, text="Szczegóły")
+
+# === HURTOWNIE ===
+entry_h_name = Entry(frame_hurtownie) # pole tekstowe do wprowadzania danych
+entry_h_street = Entry(frame_hurtownie)
+entry_h_city = Entry(frame_hurtownie)
+Label(frame_hurtownie, text="Nazwa").pack() # etykieta tekstowa
+entry_h_name.pack() # umieszczenie elementu w interfejsie
+Label(frame_hurtownie, text="Ulica").pack()
+entry_h_street.pack()
+Label(frame_hurtownie, text="Miasto").pack() # etykieta tekstowa
+entry_h_city.pack()
