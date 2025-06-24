@@ -157,3 +157,20 @@ Button(frame_hurtownie, text="Dodaj", command=add_hurtownia).pack() # przycisk
 listbox_hurtownie = Listbox(frame_hurtownie) # lista elementów
 listbox_hurtownie.pack() # umieszczenie elementu w interfejsie
 Button(frame_hurtownie, text="Usuń", command=lambda: delete_selected(listbox_hurtownie, hurtownie)).pack() # przycisk
+
+# === PRACOWNICY ===
+entry_p_name = Entry(frame_pracownicy) # pole tekstowe do wprowadzania danych
+entry_p_surname = Entry(frame_pracownicy)
+entry_p_street = Entry(frame_pracownicy)
+entry_p_city = Entry(frame_pracownicy)
+combo_p_hurtownia = ttk.Combobox(frame_pracownicy, state="readonly") # rozwijana lista wyboru
+Label(frame_pracownicy, text="Imię").pack() # etykieta tekstowa
+entry_p_name.pack() # umieszczenie elementu w interfejsie
+Label(frame_pracownicy, text="Nazwisko").pack()
+entry_p_surname.pack()
+Label(frame_pracownicy, text="Ulica").pack()
+entry_p_street.pack()
+Label(frame_pracownicy, text="Miasto").pack()
+entry_p_city.pack()
+Label(frame_pracownicy, text="Hurtownia").pack()
+combo_p_hurtownia.pack()
